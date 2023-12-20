@@ -2,33 +2,26 @@ package parsers
 
 import com.tomaszz.parsers.parsers.isRangeExpression
 import com.tomaszz.parsers.parsers.parseRange
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class RangeParserTest {
     @Test
-    fun testIsRangeExpression_positive() {
-        val input = "1-2"
-        val expected = true
-        val actual = isRangeExpression(input)
-        assertEquals(expected, actual, "The isRangeExpression function did not return the expected boolean.")
+    fun `test valid range expression`() {
+        assertTrue(isRangeExpression("1-2"))
     }
 
     @Test
-    fun testIsRangeExpression_negative() {
-        val input = "*/1-2"
-        val expected = false
-        val actual = isRangeExpression(input)
-        assertEquals(expected, actual, "The isRangeExpression function did not return the expected boolean.")
+    fun `test invalid range expression`() {
+        assertFalse(isRangeExpression("1,5"))
+        assertFalse(isRangeExpression("def"))
+        assertFalse(isRangeExpression("10"))
+        assertFalse(isRangeExpression("-"))
     }
 
     @Test
-    fun testParseRange() {
-        val input = "1-2"
-        val lowerBound = 1
-        val upperBound = 3
-        val expected = listOf(1, 2)
-        val actual = parseRange(input, lowerBound, upperBound)
-        assertEquals(expected, actual, "The parseRange function did not return the expected list.")
+    fun `parse valid range string`() {
+        val expected = listOf(1, 2, 3, 4, 5)
+        assertEquals(expected, parseRange("1-5", 0, 6))
     }
 }

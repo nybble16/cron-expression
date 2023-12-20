@@ -3,30 +3,29 @@ package parsers
 import com.tomaszz.parsers.parsers.isCommaSeparatedExpression
 import com.tomaszz.parsers.parsers.parseCommaSeparated
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Test
+import kotlin.test.assertTrue
 
 class CommaSeparatedParserTest {
     @Test
-    fun testIsCommaSeparatedExpression_positive() {
-        val input = "1,2,5"
-        val expected = true
-        val actual = isCommaSeparatedExpression(input)
-        assertEquals(expected, actual, "The isCommaSeparatedExpression function did not return the expected boolean.")
+    fun `isCommaSeparatedExpression test comma separated expression`() {
+        assertTrue(isCommaSeparatedExpression("1,2,5"))
+        assertTrue(isCommaSeparatedExpression("1"))
+        assertTrue(isCommaSeparatedExpression("5,44,777"))
     }
 
     @Test
-    fun testIsCommaSeparatedExpression_negative() {
-        val input = "1-2"
-        val expected = false
-        val actual = isCommaSeparatedExpression(input)
-        assertEquals(expected, actual, "The isCommaSeparatedExpression function did not return the expected boolean.")
+    fun `isCommaSeparatedExpression test invalid expression`() {
+        assertFalse(isCommaSeparatedExpression(","))
+        assertFalse(isCommaSeparatedExpression("*"))
+        assertFalse(isCommaSeparatedExpression("1-2"))
+        assertFalse(isCommaSeparatedExpression("sdf"))
     }
 
     @Test
-    fun testParseCommaSeparated() {
-        val input = "1,2,5"
-        val expected = listOf(1, 2, 5)
-        val actual = parseCommaSeparated(input, 0, 6)
-        assertEquals(expected, actual, "The parseCommaSeparated function did not return the expected list.")
+    fun `isCommaSeparatedExpression parse a valid string`() {
+        val expected = listOf(1, 2, 3)
+        assertEquals(expected, parseCommaSeparated("1,2,3", 0, 4))
     }
 }

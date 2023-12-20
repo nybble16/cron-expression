@@ -3,7 +3,7 @@ package com.tomaszz.parsers.parsers
 import com.tomaszz.parsers.expressionparts.UnparsableExpressionException
 
 fun isCommaSeparatedExpression(input: String): Boolean {
-    val regex = Regex("""[\d,]+""")
+    val regex = Regex("""\d[\d,]*""")
     return regex.matches(input)
 }
 

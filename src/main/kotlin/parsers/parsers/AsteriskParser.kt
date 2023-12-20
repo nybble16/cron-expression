@@ -15,8 +15,8 @@ fun parseAsterisk(input: String, lowerBound: Int, upperBound: Int): List<Int> {
     if (increment == 0) throw UnparsableExpressionException("Increment cannot be zero.")
 
     val result = mutableListOf<Int>()
-    for (i in lowerBound until upperBound step increment) {
+    for (i in lowerBound until upperBound step increment)
         result.add(i)
-    }
+
     return result
 }

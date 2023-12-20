@@ -16,13 +16,23 @@ data class CronExpression(val minute: ExpressionPart, val hour: ExpressionPart, 
     }
 
     companion object {
+        private const val MINUTE_RANGE_MAX = 60
+        private const val HOUR_RANGE_MAX = 24
+        private const val DAY_OF_MONTH_MAX = 32
+        private const val MONTH_MAX = 13
+        private const val DAY_OF_WEEK_MAX = 8
+
         fun parse(input: String): CronExpression {
-            val inputSplit = input.split(" ", limit = 6)
-            val minuteExpr = ExpressionPart.parse(inputSplit[0], 0, 60)
-            val hourExpr = ExpressionPart.parse(inputSplit[1], 0, 24)
-            val dayOfMonth = ExpressionPart.parse(inputSplit[2], 1, 32)
-            val month = ExpressionPart.parse(inputSplit[3], 1, 13)
-            val dayOfWeek = ExpressionPart.parse(inputSplit[4], 1, 8)
+            val inputSplit = input.split(" ").also {
+                if (it.size != 6) throw UnparsableExpressionException("Expected 6 parts, got ${it.size}.")
+            }
+
+            val minuteExpr = ExpressionPart.parse(inputSplit[0], 0, MINUTE_RANGE_MAX)
+            val hourExpr = ExpressionPart.parse(inputSplit[1], 0, HOUR_RANGE_MAX)
+            val dayOfMonth = ExpressionPart.parse(inputSplit[2], 1, DAY_OF_MONTH_MAX)
+            val month = ExpressionPart.parse(inputSplit[3], 1, MONTH_MAX)
+            val dayOfWeek = ExpressionPart.parse(inputSplit[4], 1, DAY_OF_WEEK_MAX)
+
             return CronExpression(minuteExpr, hourExpr, dayOfMonth, month, dayOfWeek, inputSplit[5])
         }
     }
