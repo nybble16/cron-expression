@@ -16,7 +16,7 @@ class RangeParserTest {
 
     @Test
     fun testIsRangeExpression_negative() {
-        val input = "-1-2"
+        val input = "*/1-2"
         val expected = false
         val actual = isRangeExpression(input)
         assertEquals(expected, actual, "The isRangeExpression function did not return the expected boolean.")

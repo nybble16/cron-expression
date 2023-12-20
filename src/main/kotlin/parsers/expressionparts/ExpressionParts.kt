@@ -32,7 +32,7 @@ data class ExpressionPart(val expression: String, val values: List<Int>) {
     companion object {
         fun parse(input: String, lowerBound: Int, upperBound: Int): ExpressionPart {
             if (isAsteriskExpression(input)) return ExpressionPart(input, parseAsterisk(input, lowerBound, upperBound))
-            if (isCommaSeparatedExpression(input)) return ExpressionPart(input, parseCommaSeparated(input))
+            if (isCommaSeparatedExpression(input)) return ExpressionPart(input, parseCommaSeparated(input, lowerBound, upperBound))
             if (isRangeExpression(input)) return ExpressionPart(input, parseRange(input, lowerBound, upperBound))
 
             throw UnparsableExpressionException("Invalid input: $input")
@@ -40,4 +40,4 @@ data class ExpressionPart(val expression: String, val values: List<Int>) {
     }
 }
 
-class UnparsableExpressionException(message: String) : Exception(message)
+class UnparsableExpressionException(message: String) : IllegalArgumentException(message)

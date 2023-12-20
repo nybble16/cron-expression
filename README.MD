@@ -1,4 +1,4 @@
-# Cron Expression Parser - Homework
+# Cron Expression Parser
 
 ## Overview
 
@@ -25,15 +25,13 @@ Clone the repository using Git:
 git clone git@github.com:nybble16/olx-cron-expression.git
 ```
 
-### Running the Application
-
-Navigate to the project directory and run the application using:
-
-For Kotlin:
+Build the project using Gradle:
 
 ```
 ./gradlew build
 ```
+
+### Running the Application
 
 ## Usage
 
@@ -45,14 +43,18 @@ java -jar OlxCronExpression.jar "*/15 0 1,15 * 1-5 /usr/bin/find"
 
 ### Output
 
-The application will output a table with the following columns:
+The application will output a table with the following columns: Minute, Hour, Day of Month, Month, Day of Week and Command.
 
-- Minute
-- Hour
-- Day of Month
-- Month
-- Day of Week
-- Command
+For the above example it will produce the following output:
+
+```
+minute        0 15 30 45
+hour          0
+day of month  1 15
+month         1 2 3 4 5 6 7 8 9 10 11 12
+day of week   1 2 3 4 5
+command       /usr/bin/find
+```
 
 ## Development
 
