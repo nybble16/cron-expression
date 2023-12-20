@@ -13,8 +13,8 @@ This project is a command line application developed in Kotlin, designed to pars
 
 ### Prerequisites
 
-- Java JDK 11 or higher (For Java version)
-- Kotlin Compiler 1.4 or higher (For Kotlin version)
+- Java JDK 17 or higher
+- Kotlin Compiler 1.9 or higher
 - Git
 
 ### Installation
@@ -29,16 +29,10 @@ git clone git@github.com:nybble16/olx-cron-expression.git
 
 Navigate to the project directory and run the application using:
 
-For Java:
-
-```
-java -jar CronExpressionParser.jar "*/15 0 1,15 * 1-5 /usr/bin/find"
-```
-
 For Kotlin:
 
 ```
-kotlin CronExpressionParser.kt "*/15 0 1,15 * 1-5 /usr/bin/find"
+./gradlew build
 ```
 
 ## Usage
@@ -46,7 +40,7 @@ kotlin CronExpressionParser.kt "*/15 0 1,15 * 1-5 /usr/bin/find"
 Pass a cron string as a single argument to the application. Example:
 
 ```
-DayOfMonthExpression "*/15 0 1,15 * 1-5 /usr/bin/find"
+java -jar OlxCronExpression.jar "*/15 0 1,15 * 1-5 /usr/bin/find"
 ```
 
 ### Output
