@@ -25,7 +25,7 @@ class CommaSeparatedParserTest {
     @Test
     fun testParseCommaSeparated() {
         val input = "1,2"
-        val expected = listOf(0, 1, 2)
+        val expected = listOf(1, 2)
         val actual = parseCommaSeparated(input)
         assertEquals(expected, actual, "The parseCommaSeparated function did not return the expected list.")
     }
