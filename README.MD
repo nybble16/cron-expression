@@ -22,7 +22,7 @@ This project is a command line application developed in Kotlin, designed to pars
 Clone the repository using Git:
 
 ```
-git clone git@github.com:nybble16/olx-cron-expression.git
+git clone git@github.com:nybble16/cron-expression.git
 ```
 
 Build the project using Gradle:
@@ -38,7 +38,7 @@ Build the project using Gradle:
 Pass a cron string as a single argument to the application. Example:
 
 ```
-java -jar OlxCronExpression.jar "*/15 0 1,15 * 1-5 /usr/bin/find"
+java -jar CronExpression.jar "*/15 0 1,15 * 1-5 /usr/bin/find"
 ```
 
 ### Output
