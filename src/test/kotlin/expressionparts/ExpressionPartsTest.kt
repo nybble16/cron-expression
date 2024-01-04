@@ -1,7 +1,11 @@
 package expressionparts
 
 import com.tomaszz.parsers.expressionparts.CronExpression
-import com.tomaszz.parsers.expressionparts.ExpressionPart
+import com.tomaszz.parsers.parsers.ParserFactory.getDayOfWeekParser
+import com.tomaszz.parsers.parsers.ParserFactory.getDayParser
+import com.tomaszz.parsers.parsers.ParserFactory.getHourParser
+import com.tomaszz.parsers.parsers.ParserFactory.getMinuteParser
+import com.tomaszz.parsers.parsers.ParserFactory.getMonthParser
 import org.junit.jupiter.api.Assertions.assertEquals
 import kotlin.test.Test
 
@@ -10,11 +14,11 @@ class ExpressionPartsTest {
     fun testParse() {
         val input = "*/15 0 1,15 * 1-5 /usr/bin/find"
         val expected = CronExpression(
-                minute = ExpressionPart.parse("*/15", 0, 60),
-                hour = ExpressionPart.parse("0", 0, 24),
-                dayOfMonth = ExpressionPart.parse("1,15", 1, 32),
-                month = ExpressionPart.parse("*", 1, 13),
-                dayOfWeek = ExpressionPart.parse("1-5", 1, 8),
+                minute = getMinuteParser().parse("*/15"),
+                hour = getHourParser().parse("0"),
+                dayOfMonth = getDayParser().parse("1,15"),
+                month = getMonthParser().parse("*"),
+                dayOfWeek = getDayOfWeekParser().parse("1-5"),
                 command = "/usr/bin/find"
         )
         val actual = CronExpression.parse(input)
